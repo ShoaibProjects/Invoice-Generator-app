@@ -28,7 +28,9 @@ connect(process.env.MONGO_URI)
 
 
 
-app.use('/api', invoiceRoutes);
+app.use('/api', async(req,res)=>{
+    res.send('hmm')
+});
 
 // Serve static files from the 'build' directory for frontend
 app.use(express.static(path.join(__dirname, 'dist')));
