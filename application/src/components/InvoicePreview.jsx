@@ -111,8 +111,8 @@ const InvoicePreview = ({ customer, products }) => {
 
   return (
     <div className="bg-white shadow-md rounded-lg p-6">
-      <div className='flex justify-between'>
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Invoice</h2>
+      <div className='flex justify-center md:justify-between'>
+      <h2 className="hidden md:block text-2xl font-semibold text-gray-800 mb-6">Invoice</h2>
       <button 
         onClick={downloadPDF} 
         className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition ease-in-out duration-200 mb-4"

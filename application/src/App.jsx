@@ -9,6 +9,15 @@ const App = () => {
   const [customer, setCustomer] = useState({});
   const [products, setProducts] = useState([]);
   const [invoices, setInvoices] = useState([]);
+  const [change, setChange] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
+  const handleRef = () => {
+    setRefresh(!refresh);
+    setCustomer({});
+    setProducts([]);
+    setInvoices([]);
+  };
 
   const handleSaveInvoice = async () => {
     const subtotal = products.reduce((acc, item) => acc + item.quantity * item.price, 0);
@@ -21,6 +30,7 @@ const App = () => {
       const response = await axios.post('http://localhost:5000/api/invoices', invoice);
       alert('Invoice saved successfully!');
       setInvoices([...invoices, response.data]);
+      setChange(!change);
     } catch (error) {
       console.error('Error saving invoice:', error);
     }
@@ -34,17 +44,17 @@ const App = () => {
         <div className="space-y-6">
           <div className="bg-slate-50 shadow-md rounded-lg p-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4">Customer Information</h2>
-            <CustomerForm setCustomer={setCustomer} />
+            <CustomerForm handleRef={handleRef} setCustomer={setCustomer} />
           </div>
 
           <div className="bg-slate-50 shadow-md rounded-lg p-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4">Product Details</h2>
-            <ProductForm setProducts={setProducts} />
+            <ProductForm refresh={refresh} customer={customer} setProducts={setProducts} />
           </div>
 
           <div className="bg-slate-50 shadow-md rounded-lg p-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4">Invoice Preview</h2>
-            <InvoicePreview customer={customer} products={products} />
+            <InvoicePreview refresh={refresh} customer={customer} products={products} />
           </div>
 
           <div className="text-center">
@@ -58,7 +68,7 @@ const App = () => {
 
           <div className="bg-gray-50 shadow-md rounded-lg p-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4">Saved Invoices</h2>
-            <SavedInvoices invoices={invoices} />
+            <SavedInvoices change={change} />
           </div>
         </div>
       </div>
