@@ -4,6 +4,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import invoiceRoutes from './routes/invoiceRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,6 +25,10 @@ app.use(json());
 connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connection established successfully'))
   .catch((err) => console.error('MongoDB connection error:', err));
+
+
+
+app.use('/api', invoiceRoutes);
 
 // Serve static files from the 'build' directory for frontend
 app.use(express.static(path.join(__dirname, 'dist')));
