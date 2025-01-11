@@ -27,7 +27,7 @@ const App = () => {
     const invoice = { customer, products, total };
     
     try {
-      const response = await axios.post('http://localhost:5000/api/invoices', invoice);
+      const response = await axios.post('https://invoice-generator-app-assignment.vercel.app/api/invoices', invoice);
       alert('Invoice saved successfully!');
       setInvoices([...invoices, response.data]);
       setChange(!change);
