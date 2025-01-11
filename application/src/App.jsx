@@ -27,13 +27,41 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Basic Invoice Generator</h1>
-      <CustomerForm setCustomer={setCustomer} />
-      <ProductForm setProducts={setProducts} />
-      <InvoicePreview customer={customer} products={products} />
-      <button onClick={handleSaveInvoice}>Save Invoice</button>
-      <SavedInvoices invoices={invoices} />
+    <div className="bg-gray-50 min-h-screen p-4 sm:p-6 lg:p-8">
+      <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">Basic Invoice Generator</h1>
+
+        <div className="space-y-6">
+          <div className="bg-slate-50 shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">Customer Information</h2>
+            <CustomerForm setCustomer={setCustomer} />
+          </div>
+
+          <div className="bg-slate-50 shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">Product Details</h2>
+            <ProductForm setProducts={setProducts} />
+          </div>
+
+          <div className="bg-slate-50 shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">Invoice Preview</h2>
+            <InvoicePreview customer={customer} products={products} />
+          </div>
+
+          <div className="text-center">
+            <button
+              onClick={handleSaveInvoice}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Save Invoice
+            </button>
+          </div>
+
+          <div className="bg-gray-50 shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">Saved Invoices</h2>
+            <SavedInvoices invoices={invoices} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
