@@ -7,7 +7,7 @@ const SavedInvoices = (derivedData) => {
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/invoices');
+        const response = await axios.get('https://invoice-generator-app-assignment.vercel.app/api/invoices');
         setInvoices(response.data);
         console.log(response.data);
       } catch (error) {
@@ -20,7 +20,7 @@ const SavedInvoices = (derivedData) => {
 
   const handleDeleteInvoice = async (invoiceId) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/invoices/${invoiceId}`);
+      const response = await axios.delete(`https://invoice-generator-app-assignment.vercel.app/api/invoices/${invoiceId}`);
       alert('Invoice deleted successfully!');
       setInvoices(invoices.filter(invoice => invoice._id !== invoiceId)); // Update UI to reflect deleted invoice
     } catch (error) {

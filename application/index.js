@@ -14,8 +14,8 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173',  // Frontend URL
-//   origin: ['https://idea-hub-app.vercel.app'],
+//   origin: 'http://localhost:5173',  // Frontend URL
+  origin: ['https://invoice-generator-app-assignment.vercel.app'],
   credentials: true,                // Allow cookies
 }));
 app.use(json());
@@ -38,7 +38,9 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
   });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// // Start server
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+export default app;
