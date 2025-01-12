@@ -9,7 +9,6 @@ const SavedInvoices = (derivedData) => {
       try {
         const response = await axios.get('https://invoice-generator-app-assignment.vercel.app/api/invoices');
         setInvoices(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching invoices:', error);
       }
