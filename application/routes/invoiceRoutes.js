@@ -22,7 +22,7 @@ router.get('/invoices', async (req, res) => {
   }
 });
 
-// DELETE endpoint to delete an invoice by ID
+
 router.delete('/invoices/:id', async (req, res) => {
     try {
       const invoiceId = req.params.id;

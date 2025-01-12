@@ -11,11 +11,9 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-console.log('noo');
 
 // Middleware
 app.use(cors({
-//   origin: 'http://localhost:5173',  // Frontend URL
   origin: ['https://invoice-generator-app-assignment.vercel.app'],
 }));
 app.use(json());
@@ -28,21 +26,15 @@ connect(process.env.MONGO_URI)
 
 
 
-app.use('/api', async(req,res)=>{
-    res.send('hmm')
-});
+  app.use('/api', invoiceRoutes);
 
-// // Serve static files from the 'build' directory for frontend
-// app.use(express.static(path.join(__dirname, 'dist')));
+// Serve static files from the 'build' directory for frontend
+app.use(express.static(path.join(__dirname, 'dist')));
 
-// // Catch-all handler for any route not matching the API, serve the frontend React app
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-//   });
-
-app.get('*', (req,res)=>{
-  res.send('ok5')
-})
+// Catch-all handler for any route not matching the API, serve the frontend React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
 
 // // Start server
 // app.listen(PORT, () => {
