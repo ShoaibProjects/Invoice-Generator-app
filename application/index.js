@@ -31,13 +31,17 @@ app.use('/api', async(req,res)=>{
     res.send('hmm')
 });
 
-// Serve static files from the 'build' directory for frontend
-app.use(express.static(path.join(__dirname, 'dist')));
+// // Serve static files from the 'build' directory for frontend
+// app.use(express.static(path.join(__dirname, 'dist')));
 
-// Catch-all handler for any route not matching the API, serve the frontend React app
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-  });
+// // Catch-all handler for any route not matching the API, serve the frontend React app
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+//   });
+
+app.get('*', (req,res)=>{
+  res.send('ok5')
+})
 
 // // Start server
 // app.listen(PORT, () => {
